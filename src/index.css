@@ -1,11 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  /* color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,4 +21,27 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.slick-dots li button {
+  background-color: #46A358 !important;
+  opacity: 30%;
+}
+
+.slick-active button {
+  background-color: #46A358 !important;
+}
+
+.slick-active button {
+background-color: 0 0 0 2px #46A358;
+}
+.ant-slider-track {
+  border: 2px solid #46A358;
+}
+.ant-slider .ant-slider-handler::after{
+  box-shadow: 0 0 0 2px #46A358;
+}
+
+.ant-slider .ant-slider-handler-1::after:hover {
+  box-shadow: 0 0 0 2px #46A358;
 }
