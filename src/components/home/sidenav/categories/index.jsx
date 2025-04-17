@@ -2,25 +2,20 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Skeleton } from "antd";
 import { useSearchParams } from "../../../../hooks/useSearchParams";
+import { useQuery } from "@tanstack/react-query";
+import { useAxios } from "../../../../hooks/useAxios";
 
 const Categories = () => {
+  const axios = useAxios();
   const { getParams, setParams } = useSearchParams();
-  const [loading, setLoading] = useState(false);
-  const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    const api_call = async () => {
-      setLoading(true);
-      const { data } = await axios({
-        url: "https://greenshopapi.rakhmatov1020.uz/api/flower/category?access_token=64bebc1e2c6d3f056a8c85b7",
-        method: "GET",
-      });
-      setLoading(false);
-
-      setCategories(data.data);
-    };
-    api_call();
-  }, []);
+  const { data, isLoading } = useQuery({
+    queryKey: "categories",
+    queryFn: async () => {
+      const { data } = await axios({ url: "/flower/category" });
+      return data.data;
+    },
+  });
 
   const selectedCategory = getParams("category") ?? "house-plants";
   const normal_text =
@@ -32,11 +27,11 @@ const Categories = () => {
     <div>
       <h1 className="font-bold">Categories</h1>
       <div className="pl-[12px] w-full">
-        {loading
+        {isLoading
           ? Array.from({ length: 10 }).map((_, idx) => {
               <Skeleton.Input block key={idx} />;
             })
-          : categories.map((category) => (
+          : data.map((category) => (
               <div
                 key={category._id}
                 className={
