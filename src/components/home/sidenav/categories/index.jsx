@@ -21,8 +21,6 @@ const Categories = () => {
   const active_text =
     "w-full flex justify-between items-center mt-[7px] text-[#46A358] cursor-pointer";
 
-  console.log(data);
-
   return (
     <div>
       <h1 className="font-bold">Categories</h1>
