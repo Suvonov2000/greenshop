@@ -1,11 +1,11 @@
 import { useSearchParams } from "react-router-dom";
+import Header from "./header";
 
 const Category = () => {
   const [get] = useSearchParams();
   return (
     <div className="w-full ">
-      <h1>Categry</h1>
-      <p>{get.get("category") ?? "house-plants"}</p>
+      <Header />
     </div>
   );
 };

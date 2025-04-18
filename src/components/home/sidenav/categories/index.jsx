@@ -1,5 +1,3 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Skeleton } from "antd";
 import { useSearchParams } from "../../../../hooks/useSearchParams";
 import { useQuery } from "@tanstack/react-query";
@@ -23,6 +21,8 @@ const Categories = () => {
   const active_text =
     "w-full flex justify-between items-center mt-[7px] text-[#46A358] cursor-pointer";
 
+  console.log(data);
+
   return (
     <div>
       <h1 className="font-bold">Categories</h1>
@@ -31,18 +31,18 @@ const Categories = () => {
           ? Array.from({ length: 10 }).map((_, idx) => {
               <Skeleton.Input block key={idx} />;
             })
-          : data.map((category) => (
+          : data?.map((category) => (
               <div
-                key={category._id}
+                key={category?._id}
                 className={
-                  selectedCategory === category.route_path
+                  selectedCategory === category?.route_path
                     ? active_text
                     : normal_text
                 }
-                onClick={() => setParams({ category: category.route_path })}
+                onClick={() => setParams({ category: category?.route_path })}
               >
-                <h3>{category.title}</h3>
-                <h3>({category.count})</h3>
+                <h3>{category?.title}</h3>
+                <h3>({category?.count})</h3>
               </div>
             ))}
       </div>

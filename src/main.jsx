@@ -19,14 +19,14 @@ const authstore = createStore({
 });
 
 createRoot(document.getElementById("root")).render(
-  <AuthProvider store={authstore}>
-    <BrowserRouter>
-      <Provider store={store}>
-        <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient}>
+    <AuthProvider store={authstore}>
+      <BrowserRouter>
+        <Provider store={store}>
           <ReactQueryDevtools initialIsOpen={false} />
           <App />
-        </QueryClientProvider>
-      </Provider>
-    </BrowserRouter>
-  </AuthProvider>
+        </Provider>
+      </BrowserRouter>
+    </AuthProvider>
+  </QueryClientProvider>
 );
