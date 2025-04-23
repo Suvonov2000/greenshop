@@ -7,6 +7,9 @@ export const useSearchParams = () => {
   const { search } = useLocation();
   const [get, set] = useSearchRouterParam();
 
+  console.log(search, "search");
+  console.log(get.get("name"), "get");
+
   const params = new URLSearchParams(search);
 
   const getAllParams = () => {
@@ -23,5 +26,6 @@ export const useSearchParams = () => {
   };
 
   const getParams = (params) => get.get(params);
+
   return { getAllParams, setParams, getParams };
 };
