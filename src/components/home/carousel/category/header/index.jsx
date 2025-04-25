@@ -4,8 +4,8 @@ import { useSearchParams } from "../../../../../hooks/useSearchParams";
 const Header = () => {
   const { setParams, getParams } = useSearchParams();
 
-  const type = getParams("type");
-  const sort = getParams("sort");
+  const type = getParams("type") ?? "all-plants";
+  const sort = getParams("sort") ?? "default-sorting";
 
   const options = [
     {
@@ -55,8 +55,11 @@ const Header = () => {
         <h3>Sort by:</h3>
         <Select
           labelInValue
-          defaultValue={options?.filter((item) => item.value === sort)}
-          onChange={(value) => setParams({ sort: value.value })}
+          // defaultValue={options?.filter((item) => item.value === sort)}
+          value={options?.filter((item) => item.value === sort)[0]}
+          onChange={(value) => {
+            setParams({ sort: value });
+          }}
           style={{ width: 150 }}
           options={options}
         />
