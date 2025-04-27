@@ -1,8 +1,8 @@
 import { Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategoryModal } from "../../../../../../redux/generic-slices/modals";
-import Categories from "../../../../sidenav/categories";
-import PriceRange from "../../../../sidenav/price-range";
+import { setCategoryModal } from "../../../../../redux/generic-slices/modals";
+import Categories from "../../../sidenav/categories";
+import PriceRange from "../../../sidenav/price-range";
 import SortSelector from "../../header/sort-selector";
 
 const Category = () => {

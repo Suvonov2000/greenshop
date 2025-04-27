@@ -1,5 +1,5 @@
 import SliderSection from "./carousel";
-import Category from "./carousel/category";
+import Category from "./category";
 import SideNav from "./sidenav";
 
 const Home = () => {

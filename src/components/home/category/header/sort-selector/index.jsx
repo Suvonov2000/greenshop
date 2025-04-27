@@ -1,5 +1,5 @@
 import { Select } from "antd";
-import { useSearchParams } from "../../../../../../hooks/useSearchParams";
+import { useSearchParams } from "../../../../../hooks/useSearchParams";
 
 const SortSelector = () => {
   const { setParams, getParams } = useSearchParams();

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "../../../../../hooks/useSearchParams";
-import { useAxios } from "../../../../../hooks/useAxios";
+import { useSearchParams } from "../../../../hooks/useSearchParams";
+import { useAxios } from "../../../../hooks/useAxios";
 import Card from "./card";
 import Loading from "./card/loading";
 
@@ -14,7 +14,7 @@ const Body = () => {
   const sort = getParams("sort") ?? "default-sorting";
   const type = getParams("type") ?? "all-plants";
 
-  const cache_key = `categery=${category}&min=${min}&max=${max}&sort=${sort}`;
+  const cache_key = `categery=${category}&min=${min}&max=${max}&sort=${sort}&type=${type}`;
 
   const { data, isLoading } = useQuery({
     queryKey: [cache_key],

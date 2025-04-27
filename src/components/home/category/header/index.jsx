@@ -1,8 +1,8 @@
 import { Button, Select } from "antd";
-import { useSearchParams } from "../../../../../hooks/useSearchParams";
+import { useSearchParams } from "../../../../hooks/useSearchParams";
 import { BarsOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
-import { setCategoryModal } from "../../../../../redux/generic-slices/modals";
+import { setCategoryModal } from "../../../../redux/generic-slices/modals";
 import SortSelector from "./sort-selector";
 
 const Header = () => {
