@@ -27,7 +27,7 @@ const SortSelector = () => {
         labelInValue
         value={options?.filter((item) => item.value === sort)[0]}
         onChange={(value) => {
-          setParams({ sort: value });
+          setParams({ sort: value.value });
         }}
         style={{ width: 150 }}
         options={options}
