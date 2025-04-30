@@ -1,17 +1,41 @@
-import { Divider, Form, Input } from "antd";
+import { Divider, Form, Input, notification } from "antd";
 import {
   FacebookOutlined,
   GoogleOutlined,
+  LoginOutlined,
   QrcodeOutlined,
 } from "@ant-design/icons";
+import { useState } from "react";
+import { useAxios } from "../../../../../hooks/useAxios";
 
 const Login = () => {
+  const axios = useAxios();
+  const [loading, setLoading] = useState(false);
+
+  const onFinish = async (e) => {
+    setLoading(true);
+    try {
+      const { data } = await axios({
+        method: "POST",
+        url: "/user/sign-in",
+        data: e,
+      });
+      console.log(e, data);
+    } catch (error) {
+      notification.error({
+        message: "Something went wrong",
+        description: error?.response?.data?.extraMessage,
+      });
+    }
+    setLoading(false);
+  };
   return (
     <div className="w-[80%] m-auto">
       <h3 className="text-sm mt-8 font-normal">
         Enter your username and password to login
       </h3>
       <Form
+        onFinish={onFinish}
         className="mt-4"
         name="basic"
         labelCol={{ span: 8 }}
@@ -22,7 +46,7 @@ const Login = () => {
         layout="vertical"
       >
         <Form.Item
-          name="username"
+          name="email"
           rules={[{ required: true, message: "Please input your email!" }]}
         >
           <Input placeholder="Your email..." />
@@ -38,7 +62,7 @@ const Login = () => {
           Forgot Password
         </h3>
         <button className="bg-[#46A358] flex rounded-md items-center justify-center gap-1 text-base text-white w-full h-[45px] my-[27px]">
-          Login
+          {loading ? <LoginOutlined /> : "Login"}
         </button>
       </Form>
 

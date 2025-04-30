@@ -14,13 +14,13 @@ const Body = () => {
   const sort = getParams("sort") ?? "default-sorting";
   const type = getParams("type") ?? "all-plants";
 
-  const cache_key = `categery=${category}&min=${min}&max=${max}&sort=${sort}&type=${type}`;
+  const cache_key = `categery=${category}&range_min=${min}&range_max=${max}&sort=${sort}&type=${type}`;
 
   const { data, isLoading } = useQuery({
     queryKey: [cache_key],
     queryFn: async () => {
       const { data } = await axois({
-        url: `/flower/category/${category}`,
+        url: `/flower/category/${category}?${category}`,
         params: {
           range_min: min,
           range_max: max,
@@ -36,7 +36,7 @@ const Body = () => {
     <div className="flex flex-wrap gap-4 ">
       {isLoading
         ? Array.from({ length: 10 }).map((_, idx) => <Loading key={idx} />)
-        : data?.map((item) => <Card key={item.id} {...item} />)}
+        : data?.map((item, idx) => <Card key={idx} {...item} />)}
     </div>
   );
 };

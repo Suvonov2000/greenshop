@@ -1,4 +1,5 @@
 const Card = ({ title, main_image, price }) => {
+  console.log({ title, main_image, price });
   return (
     <div className="w-[258px]">
       <div className="h-[300px] w-full bg-[#FBFBFB]">

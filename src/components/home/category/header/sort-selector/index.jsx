@@ -14,8 +14,8 @@ const SortSelector = () => {
       label: "The cheapest",
     },
     {
-      value: "most-expansive",
-      label: "Most expansive",
+      value: "most-expensive",
+      label: "Most expensive",
     },
   ];
 

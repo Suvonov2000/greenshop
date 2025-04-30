@@ -8,7 +8,7 @@ const Categories = () => {
   const { getParams, setParams } = useSearchParams();
 
   const { data, isLoading } = useQuery({
-    queryKey: "categories",
+    queryKey: ["categories"],
     queryFn: async () => {
       const { data } = await axios({ url: "/flower/category" });
       return data.data;
