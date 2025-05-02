@@ -7,8 +7,10 @@ import {
 } from "@ant-design/icons";
 import { useState } from "react";
 import { useAxios } from "../../../../../hooks/useAxios";
+import useSignIn from "react-auth-kit/hooks/useSignIn";
 
 const Login = () => {
+  const signIn = useSignIn();
   const axios = useAxios();
   const [loading, setLoading] = useState(false);
 
@@ -19,6 +21,18 @@ const Login = () => {
         method: "POST",
         url: "/user/sign-in",
         data: e,
+      });
+      const { token, user } = data.data;
+      signIn({
+        auth: {
+          token,
+          type: "Bearer",
+        },
+        userState: user,
+      });
+      notification.success({
+        message: "Logged in",
+        description: "You have logged in successfully",
       });
       console.log(e, data);
     } catch (error) {
