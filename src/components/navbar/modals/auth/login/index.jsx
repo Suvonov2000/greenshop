@@ -7,10 +7,13 @@ import {
 } from "@ant-design/icons";
 import { useState } from "react";
 import { useAxios } from "../../../../../hooks/useAxios";
-import useSignIn from "react-auth-kit/hooks/useSignIn";
+import { useAuth } from "../../../../../configs/auth";
+import { useDispatch } from "react-redux";
+import { setAuthModal } from "../../../../../redux/generic-slices/modals";
 
 const Login = () => {
-  const signIn = useSignIn();
+  const dispatch = useDispatch;
+  const { signIn } = useAuth();
   const axios = useAxios();
   const [loading, setLoading] = useState(false);
 
@@ -24,17 +27,15 @@ const Login = () => {
       });
       const { token, user } = data.data;
       signIn({
-        auth: {
-          token,
-          type: "Bearer",
-        },
-        userState: user,
+        token,
+        user,
       });
+
       notification.success({
         message: "Logged in",
         description: "You have logged in successfully",
       });
-      console.log(e, data);
+      dispatch(setAuthModal());
     } catch (error) {
       notification.error({
         message: "Something went wrong",
