@@ -2,8 +2,8 @@ import cookie from "js-cookie";
 
 export const useAuth = () => {
   const signIn = ({ token, user, tokenType = "Bearer" }) => {
-    cookie.set = ("token", token);
-    cookie.set = ("user", JSON.stringify(user));
+    cookie.set("token", token);
+    cookie.set("user", JSON.stringify(user));
     cookie.set("tokenType", tokenType);
   };
 

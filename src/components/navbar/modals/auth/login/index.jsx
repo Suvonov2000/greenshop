@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { setAuthModal } from "../../../../../redux/generic-slices/modals";
 
 const Login = () => {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const { signIn } = useAuth();
   const axios = useAxios();
   const [loading, setLoading] = useState(false);
@@ -37,6 +37,8 @@ const Login = () => {
       });
       dispatch(setAuthModal());
     } catch (error) {
+      console.log(error);
+
       notification.error({
         message: "Something went wrong",
         description: error?.response?.data?.extraMessage,
