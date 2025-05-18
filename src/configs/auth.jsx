@@ -15,7 +15,7 @@ export const useAuth = () => {
   const getUser = () => {
     return {
       token: cookie.get("token"),
-      user: JSON.parse(cookie.get("user")),
+      user: JSON.parse(cookie.get("user") ?? "{}"),
       tokenType: cookie.get("tokenType"),
     };
   };
@@ -25,5 +25,7 @@ export const useAuth = () => {
   return {
     signIn,
     signOut,
+    getUser,
+    isAuthed,
   };
 };

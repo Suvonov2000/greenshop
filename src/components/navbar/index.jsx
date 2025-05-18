@@ -7,10 +7,14 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setAuthModal } from "../../redux/generic-slices/modals";
 import AuthModal from "./modals/auth";
+import { useAuth } from "../../configs/auth";
 
 const Navbar = () => {
+  const { isAuthed, getUser } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { user } = getUser();
   return (
     <>
       <AuthModal />
@@ -41,13 +45,22 @@ const Navbar = () => {
         <div className="flex gap-[30px]">
           <SearchOutlined className="cursor-pointer text-[20px]" />
           <ShoppingCartOutlined className="cursor-pointer text-[20px]" />
-          <button
-            onClick={() => dispatch(setAuthModal())}
-            type="button"
-            className="w-[100px] h-[35px] bg-[#46A358] flex gap-2 items-center justify-center rounded-[6px] text-white "
-          >
-            <LoginOutlined /> Login
-          </button>
+          {isAuthed() ? (
+            <button
+              type="button"
+              className="w-[100px] h-[35px] bg-[#46A358] flex gap-2 items-center justify-center rounded-[6px] text-white "
+            >
+              {user.name}
+            </button>
+          ) : (
+            <button
+              onClick={() => dispatch(setAuthModal())}
+              type="button"
+              className="w-[100px] h-[35px] bg-[#46A358] flex gap-2 items-center justify-center rounded-[6px] text-white "
+            >
+              <LoginOutlined /> Login
+            </button>
+          )}
         </div>
       </div>
     </>
