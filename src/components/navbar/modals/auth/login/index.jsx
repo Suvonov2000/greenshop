@@ -18,6 +18,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (e) => {
+    if (loading) return;
     setLoading(true);
     try {
       const { data } = await axios({
