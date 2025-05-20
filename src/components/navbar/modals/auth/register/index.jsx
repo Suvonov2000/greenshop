@@ -21,6 +21,7 @@ const Register = () => {
   const onFinish = async (e) => {
     if (loading) return;
     setLoading(true);
+    console.log(e);
     try {
       const { data } = await axios({
         url: "user/sign-up",
@@ -57,35 +58,35 @@ const Register = () => {
         layout="vertical"
       >
         <Form.Item
-          name="username"
+          name="name"
           rules={[{ required: true, message: "Please input your name!" }]}
         >
           <Input placeholder="Name" />
         </Form.Item>
 
         <Form.Item
-          surname="username"
+          name="surname"
           rules={[{ required: true, message: "Please input your surname!" }]}
         >
           <Input placeholder="Surname" />
         </Form.Item>
 
         <Form.Item
-          address="username"
+          name="email"
           rules={[{ required: true, message: "Please input your email!" }]}
         >
           <Input placeholder="Enter email address" />
         </Form.Item>
 
         <Form.Item
-          password="password"
+          name="password"
           rules={[{ required: true, message: "Please input your password!" }]}
         >
           <Input.Password placeholder="Enter your password" />
         </Form.Item>
 
         <Form.Item
-          coniform_password="password"
+          name="coniform_password"
           rules={[{ required: true, message: "Please input your password!" }]}
         >
           <Input.Password placeholder="Coniform your password" />
